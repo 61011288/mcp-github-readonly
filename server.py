@@ -5,6 +5,11 @@ from fastmcp import FastMCP
 mcp = FastMCP("github-sse")
 
 @mcp.tool
+def mcp_ping() -> str:
+    print("[mcp_ping] called", flush=True)
+    return "pong"
+
+@mcp.tool
 def mcp_fetch(url: str) -> str:
     print(f"[mcp_fetch] called with url={url}", flush=True)
     try:
@@ -26,8 +31,3 @@ if __name__ == "__main__":
         port=port,
         path="/sse",
     )
-
-@mcp.tool
-def mcp_ping() -> str:
-    print("[mcp_ping] called", flush=True)
-    return "pong"
