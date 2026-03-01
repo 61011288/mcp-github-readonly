@@ -5,22 +5,22 @@ from fastmcp import FastMCP
 mcp = FastMCP("github-sse")
 
 @mcp.tool
-def mcp_ping() -> str:
-    print("[mcp_ping] called", flush=True)
+def ping_star() -> str:
+    print("[ping_star] called", flush=True)
     return "pong"
 
 @mcp.tool
-def mcp_fetch(url: str) -> str:
-    print(f"[mcp_fetch] called with url={url}", flush=True)
+def read_url_text(url: str) -> str:
+    print(f"[read_url_text] called with url={url}", flush=True)
     try:
         r = requests.get(url, timeout=30)
-        print(f"[mcp_fetch] status={r.status_code}", flush=True)
+        print(f"[read_url_text] status={r.status_code}", flush=True)
         r.raise_for_status()
         text = r.text[:200_000]
-        print(f"[mcp_fetch] returning {len(text)} chars", flush=True)
+        print(f"[read_url_text] returning {len(text)} chars", flush=True)
         return text
     except Exception as e:
-        print(f"[mcp_fetch] ERROR: {repr(e)}", flush=True)
+        print(f"[read_url_text] ERROR: {repr(e)}", flush=True)
         raise
 
 if __name__ == "__main__":
