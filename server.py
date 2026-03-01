@@ -8,7 +8,7 @@ mcp = FastMCP("github-readonly")
 def mcp_fetch(url: str) -> str:
     r = requests.get(url, timeout=30)
     r.raise_for_status()
-    return r.text[:200_000]  # 防止移动端一次吞太大
+    return r.text[:200_000]
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", "10000"))
@@ -16,5 +16,5 @@ if __name__ == "__main__":
         transport="streamable-http",
         host="0.0.0.0",
         port=port,
-        mount_path="/mcp",
+        # mount_path="/mcp",  # 删掉
     )
